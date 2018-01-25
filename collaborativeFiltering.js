@@ -89,20 +89,36 @@ const findIntersectionAndUnion = (iterable1, iterable2) => {
       storage[iterable2[j]] = 0;
     }
   }
+  console.log('Vector A: ', storage);
+  console.log('Vector B: ', storage2);
   const vectorA = [];
   const vectorB = [];
+  for (var key in storage) {
+    vectorA.push(storage[key]);
+    vectorB.push(storage2[key]);
+  }
+  /*
   Object.keys(storage).map((key, index) => {
     vectorA.push([key, storage[key]]);
     vectorB.push([key, storage2[key]]);
   });
+  */
   return [vectorA, vectorB];
 };
 
 let str1 = "Julie loves me more than Linda loves me";
 let str2 = "Jane likes me more than Julie loves me";
 
-let y = findIntersectionAndUnion(str1.split(' '), str2.split(' '));
-console.log(y);
+let twoVectors = findIntersectionAndUnion(str1.split(' '), str2.split(' '));
+console.log('The two vectors gotten from the intersection and union are: ', twoVectors);
+let cosineSimilarity = calculateCosineSimilarity(twoVectors[0], twoVectors[1]);
+console.log('The cosine similarity value is: ', cosineSimilarity);
+let radians = Math.acos(cosineSimilarity);
+console.log('The radians of this number is: ', radians);
+let degrees = radians * 180 / Math.PI;
+console.log('The degree difference is: ', degrees);
+
+
 
 
 const findPearsonCorrelation = data => {};
